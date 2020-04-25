@@ -37,14 +37,13 @@ public class MovieController {
                 .collect(Collectors.toList());
     }
     
-    @RequestMapping(method = RequestMethod.GET, value = "/{movieId}")
+    @RequestMapping(method = RequestMethod.GET, value = "/details/{movieId}")
     public Movies getMovie(@PathVariable(value = "movieId") Long movieId){
         return this.movieRepo.findByMovieId(movieId);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     public List<Movies> searchMovies(@RequestParam(value = "query") String query, @RequestParam(value = "genre", required = false) String genre){
-        System.out.println(genre);
         Sort sort = new Sort(Sort.Direction.DESC, "score");
         if(genre == null)   return this.movieRepo.findMatchingMovies(query, sort);
         return this.movieRepo.findMatchingMoviesInGenre(query, genre, sort);
