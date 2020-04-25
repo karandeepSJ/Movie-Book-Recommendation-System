@@ -48,7 +48,9 @@ public class MovieController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/genres")
     public List<String> getMovie(){
-        return this.mongoTemplate.getCollection("movies").distinct("genres");
+        @SuppressWarnings("unchecked")
+        List<String> distinctGenres = this.mongoTemplate.getCollection("movies").distinct("genres");
+        return distinctGenres;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
