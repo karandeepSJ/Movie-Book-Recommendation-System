@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.TextScore;
 
 /**
  *
- * @author milandeket
+ * @author alohamora
  */
 @Document
 public class Movies {

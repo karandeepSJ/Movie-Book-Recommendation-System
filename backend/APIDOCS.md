@@ -3,3 +3,4 @@
 - search with genre: `http://localhost:8002/movies/search?query=Toy%20Story&genre=Action`
 - recommendations: `http://localhost:8002/movies/recommendations`
 - movie details: `http://localhost:8002/movies/details/{movieId}`
+- list of genres: `http://localhost:8002/movies/genres`
