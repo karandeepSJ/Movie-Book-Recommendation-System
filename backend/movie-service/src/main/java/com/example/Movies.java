@@ -20,41 +20,47 @@ import org.springframework.data.mongodb.core.mapping.TextScore;
 public class Movies {
     
     @Id
-    private String id; 
-    
-    private Long movieId;
+    public String id; 
+
+    public Long movieId;
     
     @TextIndexed
-    private String title;
+    public String title;
 
-    private ArrayList<String> genres;
+    public String releaseYear;
 
-    private String poster;
+    public ArrayList<String> genres;
+
+    public String imdbId;
+
+    public String tmdbId;
+
+    public Long ratingCount;
+
+    public Long ratingSum;
+
+    public Float rating;
+
+    public String originalTitle;
+
+    public String tagline;
+
+    public String overview;
+
+    public String homepage;
+
+    public String poster;
+
+    public String releaseDate;
+
+    public Long runtime;
+
+    public Long revenue;
+
+    public String backdrop;
+
+    public ArrayList<Cast> cast;
 
     @TextScore
-    private Float score;
-
-    public Movies() {
-    }
-    
-    public Movies(String name, Long movieId) {
-        this.title = name;
-        this.movieId = movieId;
-    }
-
-    public String getTitle(){
-        return title;
-    }
-
-    public ArrayList<String> getGenres(){
-        return genres;
-    }
-
-    public Long getMovieId(){
-        return movieId;
-    }
-
-    public String getPoster(){
-        return poster;
-    }
+    public Float score;
 }
