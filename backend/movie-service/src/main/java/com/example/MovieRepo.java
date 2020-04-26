@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 /**
  *
- * @author milandeket
+ * @author alohamora
  */
 
 public interface MovieRepo extends MongoRepository<Movies, String>{

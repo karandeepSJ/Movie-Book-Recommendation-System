@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author milandeket
+ * @author alohamora
  */
 @RestController
 @RequestMapping("/movies")
@@ -27,9 +28,12 @@ public class MovieController {
     
     @Autowired
     private MovieRepo movieRepo;
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
     
     @RequestMapping(method = RequestMethod.GET, value = "/recommendations")
-    public Collection<Movies> getAllMovies(){
+    public Collection<Movies> getRecommendedMovies(){
         PageRequest pageRequest = new PageRequest(0, 10);
         return this.movieRepo.findAll(pageRequest)
                 .getContent()
@@ -40,6 +44,13 @@ public class MovieController {
     @RequestMapping(method = RequestMethod.GET, value = "/details/{movieId}")
     public Movies getMovie(@PathVariable(value = "movieId") Long movieId){
         return this.movieRepo.findByMovieId(movieId);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/genres")
+    public List<String> getMovie(){
+        @SuppressWarnings("unchecked")
+        List<String> distinctGenres = this.mongoTemplate.getCollection("movies").distinct("genres");
+        return distinctGenres;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
