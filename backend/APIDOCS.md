@@ -11,4 +11,6 @@
 - book details: `http://localhost:5050/api/b/books/details/{bookId}`
 
 # User API
-- login (POST, form attributes: (email, password)): `http://localhost:5050/api/u/login`
+- login (POST, form attributes: (email, password)): `http://localhost:5050/api/u/user/login`
+- rate movie: `http://localhost:5050/api/u/rate/movie?userId=1&movieId=10&rating=2`
+- rate book: `http://localhost:5050/api/u/rate/book?userId=9&bookId=0020198906&rating=1`
