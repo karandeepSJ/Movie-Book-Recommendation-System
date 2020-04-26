@@ -5,15 +5,8 @@
  */
 package com.example;
 
-import java.util.List;
-
-import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 
 public interface UserRepo extends MongoRepository<Users, String>{
-    public Users findUserById(Long userId);
-
-    @Query("{'username' : ?0 , 'hashedpassword' : ?1}")
-    public Users findUsersByUsernameAndHashedpassword(String username, String password);
+    public Users findByEmail(String email);
 }
