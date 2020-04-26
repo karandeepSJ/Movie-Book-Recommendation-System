@@ -27,7 +27,7 @@ public class UserController {
     @Autowired
     private UserRepo userRepo;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/login")
+    @RequestMapping(method = RequestMethod.POST, value = "/login")
     public ResponseEntity<Map<String, String>> userLogin(@RequestParam(value = "email") String email,
                 @RequestParam(value = "password") String password) {
         Users user = this.userRepo.findByEmail(email);
