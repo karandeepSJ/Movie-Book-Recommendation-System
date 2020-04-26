@@ -33,7 +33,7 @@ public class MovieController {
     private MongoTemplate mongoTemplate;
     
     @RequestMapping(method = RequestMethod.GET, value = "/recommendations")
-    public Collection<Movies> getAllMovies(){
+    public Collection<Movies> getRecommendedMovies(){
         PageRequest pageRequest = new PageRequest(0, 10);
         return this.movieRepo.findAll(pageRequest)
                 .getContent()
