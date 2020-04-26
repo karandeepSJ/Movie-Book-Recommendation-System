@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MovieServiceApplicationTests {
+public class GatewayServiceApplicationTests {
 
 	@Test
 	public void contextLoads() {
