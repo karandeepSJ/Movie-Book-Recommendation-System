@@ -10,7 +10,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,6 +31,9 @@ public class UserController {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private MongoTemplate mongoTemplate;
+
     @RequestMapping(method = RequestMethod.POST, value = "/login")
     public ResponseEntity<Map<String, String>> userLogin(@RequestParam(value = "email") String email,
                 @RequestParam(value = "password") String password) {
@@ -34,6 +41,24 @@ public class UserController {
         if(user == null || (!encryptThisString(password).equals(user.password)))
             return new ResponseEntity<Map<String,String>>(HttpStatus.FORBIDDEN);
         return new ResponseEntity<Map<String,String>>(user.toMap(), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/movieRating")
+    public DBObject getMovieRating(@RequestParam(value = "userId") Long userId,
+                @RequestParam(value = "movieId") Long movieId) {
+        BasicDBObject query = new BasicDBObject();
+        query.append("userId", userId);
+        query.append("movieId", movieId);
+        return mongoTemplate.getCollection("movieRatings").findOne(query);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/bookRating")
+    public DBObject getbookRating(@RequestParam(value = "userId") Long userId,
+                @RequestParam(value = "bookId") String bookId) {
+        BasicDBObject query = new BasicDBObject();
+        query.append("userId", userId);
+        query.append("bookId", bookId);
+        return mongoTemplate.getCollection("bookRatings").findOne(query);
     }
 
     public static String encryptThisString(String input) {
