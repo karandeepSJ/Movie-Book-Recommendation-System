@@ -9,3 +9,6 @@
 - search: `http://localhost:5050/api/b/books/search?query=Toy%20Story`
 - recommendations: `http://localhost:5050/api/b/books/recommendations`
 - book details: `http://localhost:5050/api/b/books/details/{bookId}`
+
+# User API
+- login (POST, form attributes: (email, password)): `http://localhost:5050/api/u/login`
