@@ -4,11 +4,13 @@ import SearchPage from "./components/SearchPage/SearchPage";
 import Dashboard from "./components/Dashboard/Dashboard";
 import MoviePage from "./components/ItemPage/MoviePage";
 import BookPage from "./components/ItemPage/BookPage";
+import NavbarPage from './components/NavbarPage';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
+          <Route path="/" component={NavbarPage}/>
         <Switch>
           <Route path="/home" component={Dashboard} />
           <Route path="/search" component={SearchPage} />
