@@ -5,6 +5,9 @@
  */
 package com.example;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -30,4 +33,17 @@ public class Users {
     public Long bookDbId;
 
     public Long movieDbId;
+
+    public Map<String, String> toMap(){
+        Map<String, String> mp = new HashMap<String, String>();
+        mp.put("userId", userId.toString()); 
+        mp.put("name", name); 
+        mp.put("email", email); 
+        mp.put("password", password);
+        if(bookDbId != null)    mp.put("bookDbId", bookDbId.toString());
+        else    mp.put("bookDbId", null);
+        if(movieDbId != null)    mp.put("movieDbId", movieDbId.toString());
+        else    mp.put("movieDbId", null); 
+        return mp;
+    }
 }
