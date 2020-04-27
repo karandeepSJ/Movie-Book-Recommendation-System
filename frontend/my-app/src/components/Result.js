@@ -13,7 +13,7 @@ function Result({result}) {
 		        <MDBCardBody>
 		          <MDBCardTitle><center>{result.title}</center></MDBCardTitle>
 		          <MDBCardText><center>
-		            <h3>{result.rating}</h3></center>
+		            <h3>Rating: {result.rating.toFixed(2)}</h3></center>
 		          </MDBCardText>
 		        </MDBCardBody>
 		      </MDBCard>

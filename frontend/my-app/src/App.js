@@ -9,7 +9,7 @@ import NavbarPage from './components/NavbarPage';
 import NotFound from './components/NotFound/NotFound';
 import BookSearchPage from "./components/SearchPage/BookSearchPage"
 import BookGenrePage from "./components/BookGenrePage"
-
+import Recommendation from "./components/Recommendation/Recommendation"
 function App() {
   return (
     <div>
@@ -21,8 +21,7 @@ function App() {
           <Route path="/booksearch/:query" component={BookSearchPage} />
           <Route path="/booksearching/:genre" component={BookGenrePage} />
           <Route path="/search/:query" component={SearchPage} />
-          <Route path="/searching/:genre" component={GenrePage} />
-          
+          <Route path="/searching/:genre" component={GenrePage} />          
           <Route path="/movie/:id" component={MoviePage} />
           <Route path="/book/:isbn" component={BookPage} />
           <Redirect from='/' to="/home" exact />

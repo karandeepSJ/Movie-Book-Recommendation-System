@@ -35,9 +35,7 @@ class Dashboard extends Component {
 		}
 		return (
 			<div>
-  			<h4 className="pt-5 h4-responsive">Recommended Movies:</h4>
   			<Recommendation movieDbId={user.movieDbId} bookDbId={user.bookDbId} />
-  			<h4 className="pt-5 h4-responsive">Recommended Books:</h4>
 			</div>
   	) 
 	}

@@ -123,7 +123,7 @@ render() {
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem >
-              <MDBNavLink to="/home">Home</MDBNavLink>
+              <MDBNavLink to="/home">Wuphf</MDBNavLink>
             </MDBNavItem>
             </MDBNavbarNav>
             <MDBNavbarNav right>

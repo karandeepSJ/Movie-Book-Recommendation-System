@@ -10,7 +10,6 @@ const StyledSideNav = styled.div`
     top: 3.4em;      /* Stay at the top */
     background-color: #222; /* Black */
     overflow-x: hidden;     /* Disable horizontal scroll */
-    overflow-y: hidden;     /* Disable horizontal scroll */
     
     padding-top: 10px;
 `;
@@ -34,6 +33,10 @@ class SideNav extends React.Component {
                     genres: json,
                 })
             });
+    }
+
+    convertCase(txt) {
+         return txt.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     }
 
     onItemClick = (path) => {
