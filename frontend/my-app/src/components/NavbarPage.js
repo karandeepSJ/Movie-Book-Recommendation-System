@@ -29,10 +29,6 @@ function LogoutButton(props) {
   return (
     <MDBNavbarNav right>
       <MDBNavItem>
-      <MDBNavLink to="/home"> Hi {props.name}</MDBNavLink>
-      
-      </MDBNavItem>
-      <MDBNavItem>
        <MDBBtn rounded size="sm" onClick={props.onClick}>Logout</MDBBtn>
       </MDBNavItem>
     </MDBNavbarNav>
@@ -46,9 +42,7 @@ class NavbarPage extends Component {
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
     this.handleSignupClick = this.handleSignupClick.bind(this);
-    this.changename = this.changename.bind(this);
     this.state = {
-      isLoggedIn: props.isLoggedIn,
       isOpen: false,
       value: 'Search',
       name: '',
@@ -68,17 +62,12 @@ signuptoggle = () => {
   });
 }
 
-  changename(uname){
-    this.setState({name:uname});
-    this.setState({isLoggedIn: true});
-  }
-
   handleLoginClick() {
     this.toggle()
   }
 
   handleLogoutClick() {
-    this.setState({isLoggedIn: false});
+    localStorage.clear()
   }
 
   handleSignupClick(){
@@ -100,10 +89,10 @@ updateInputValue = (evt)=>{
   }
 
 render() {
-  const isLoggedIn = this.state.isLoggedIn;
+    const check = JSON.parse(localStorage.getItem("user"))
     let button;
-    if (isLoggedIn) {
-      button =<LogoutButton onClick={this.handleLogoutClick} name={this.state.name}/>
+    if (check) {
+      button = <LogoutButton onClick={this.handleLogoutClick}/>
     } else {
       button = <LoginButton onClick={this.handleLoginClick} signupclick={this.handleSignupClick}/>;    
     }
@@ -160,12 +149,13 @@ render() {
           </MDBNavbarNav>
           <MDBNavbarNav left>
           <MDBNavItem>
-              <MDBNavLink className="waves-effect waves-light" to="/home">
-                
+              <MDBNavLink className="waves-effect waves-light" to="/home">           
               </MDBNavLink>
             </MDBNavItem>
           </MDBNavbarNav>
            {button}
+
+
           <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
           <MDBModalHeader toggle={this.toggle}>Login</MDBModalHeader>
           <MDBModalBody style={modalBG}>
