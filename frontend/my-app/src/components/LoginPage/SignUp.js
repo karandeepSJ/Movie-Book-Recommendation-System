@@ -5,7 +5,7 @@ export default class SignUp extends React.Component {
 constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      name: '',
       password: '',
       email: '',
       error: '',
@@ -37,8 +37,8 @@ constructor(props) {
   handleSubmit(evt) {
     evt.preventDefault();
 
-    if (!this.state.username) {
-      return this.setState({ error: 'Username is required' });
+    if (!this.state.name) {
+      return this.setState({ error: 'name is required' });
     }
     if (!this.state.email) {
       return this.setState({ error: 'Email is required' });
@@ -59,7 +59,7 @@ constructor(props) {
 
   handleUserChange(evt) {
     this.setState({
-      username: evt.target.value,
+      name: evt.target.value,
     });
   };
 
@@ -90,9 +90,9 @@ constructor(props) {
       <div className="login">
         <form onSubmit={this.handleSubmit}>
           <br/>
-          <label>User Name</label>
+          <label>Name</label>
           <br/>
-          <input className="input" type="text" data-test="username" value={this.state.username} onChange={this.handleUserChange}/>
+          <input className="input" type="text" data-test="name" value={this.state.name} onChange={this.handleUserChange}/>
           <br/>
           <label>Email</label>
           <br/>
@@ -123,4 +123,5 @@ constructor(props) {
     );
   }
 }
+
 

@@ -25,6 +25,10 @@ function LogoutButton(props) {
   return (
     <MDBNavbarNav right>
       <MDBNavItem>
+      <MDBNavLink to="/home"> Hi {props.name}</MDBNavLink>
+      
+      </MDBNavItem>
+      <MDBNavItem>
        <MDBBtn rounded size="sm" onClick={props.onClick}>Logout</MDBBtn>
       </MDBNavItem>
     </MDBNavbarNav>
@@ -96,9 +100,8 @@ render() {
     let button;
     if (isLoggedIn) {
       button =<LogoutButton onClick={this.handleLogoutClick} name={this.state.name}/>
-          
     } else {
-      button = <LoginButton onClick={this.handleLoginClick} signupclick={this.handleSignupClick} name={this.state.name}/>;    
+      button = <LoginButton onClick={this.handleLoginClick} signupclick={this.handleSignupClick}/>;    
     }
   return (
     <Router>
@@ -179,3 +182,4 @@ render() {
 }
 
 export default NavbarPage;
+
