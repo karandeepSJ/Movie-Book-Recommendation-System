@@ -14,7 +14,7 @@ function App() {
           <Route path="/" component={NavbarPage}/>
         <Switch>
           <Route path="/home" component={Dashboard} />
-          <Route path="/search" component={SearchPage} />
+          <Route path="/search/:query" component={SearchPage} />
           <Route path="/movie/:id" component={MoviePage} />
           <Route path="/book/:isbn" component={BookPage} />
         </Switch>
