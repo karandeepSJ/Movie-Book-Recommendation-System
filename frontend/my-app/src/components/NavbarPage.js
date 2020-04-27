@@ -98,7 +98,9 @@ render() {
    const check = JSON.parse(localStorage.getItem("user"))
     let button;
     if (check) {
-      if(check.failure=="fail" || check.submit==false){
+      if(check.submit==false){
+        localStorage.clear()
+        window.location.reload(true);
         button = <LoginButton onClick={this.handleLoginClick} signupclick={this.handleSignupClick}/>;    
       }else{
         button = <LogoutButton onClick={this.handleLogoutClick}/>
