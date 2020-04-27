@@ -26,11 +26,9 @@ class MoviePage extends Component {
 	}
 	componentDidMount() {
 		const movieId = this.props.match.params.id
-		console.log(movieId)
 		axios.get(`http://localhost:5050/api/m/movies/details/${movieId}`)
 		.then (response => {
 			this.setState(response.data);
-			console.log(this.state.backdrop)
 		})
 		.catch(err => {
 			console.log(err);
@@ -67,7 +65,7 @@ class MoviePage extends Component {
 		  				width: "60rem",
 		  				background: "rgb(0,0,0,0.7)",
 		  			}} className="mt-5">
-		  				<MDBRow style={{height:"100%"}}>
+		  				<MDBRow style={{height:"100%"}} className="mx-1">
 		  					<MDBCol size="5" style = {{
 		  						backgroundImage: `url(${this.state.poster})`,
 		  						backgroundPosition: "center",
