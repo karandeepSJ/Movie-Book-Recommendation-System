@@ -15,7 +15,7 @@ import {
 	MDBCardText
 } from "mdbreact";
 
-const greenText = {
+const orangeText = {
 	color: "rgb(205,93,0)"
 }
 
@@ -45,6 +45,10 @@ class BookPage extends Component {
 		})
 	}
 
+	convertCase(txt) {
+		 return txt.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+	}
+
 	render() {
 		if (!this.state.validBook)
 			return ("")
@@ -68,8 +72,11 @@ class BookPage extends Component {
 									<h2 className="h1-responsive font-weight-bold" style={{textTransform: "uppercase"}}>
 										{this.state.title}
 									</h2>
-									<div className="h4-responsive" style={greenText}>
+									<div className="h4-responsive">
 										{this.state.author}
+									</div>
+									<div className="h5-responsive" style={orangeText}>
+										{this.state.genres && this.state.genres.map((x)=>{return this.convertCase(x);}).join(", ")}
 									</div>
 									<div className="py-3">
 										<span dangerouslySetInnerHTML={{__html: this.state.description}}/>
@@ -77,13 +84,13 @@ class BookPage extends Component {
 									<MDBRow>
 										<MDBCol size="6">
 											Publisher:
-											<div className="h4-responsive" style={greenText}>
+											<div className="h4-responsive" style={orangeText}>
 											{this.state.publisher}
 											</div>
 										</MDBCol>
 										<MDBCol size="6">
 											Year of Release:
-											<div className="h4-responsive" style={greenText}>
+											<div className="h4-responsive" style={orangeText}>
 											{this.state.releaseYear}
 											</div>
 										</MDBCol>
@@ -91,13 +98,13 @@ class BookPage extends Component {
 									<MDBRow>
 										<MDBCol size="6">
 											Pages:
-											<div className="h4-responsive" style={greenText}>
+											<div className="h4-responsive" style={orangeText}>
 											{this.state.num_pages}
 											</div>
 										</MDBCol>
 										<MDBCol size="6">
 											Rating:
-											<div className="h4-responsive" style={greenText}>
+											<div className="h4-responsive" style={orangeText}>
 											{this.state.rating && this.state.rating.toFixed(2)}/5
 											</div>
 										</MDBCol>

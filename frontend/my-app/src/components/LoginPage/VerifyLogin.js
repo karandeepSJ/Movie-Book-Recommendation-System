@@ -21,6 +21,7 @@ export default class VerifyLogin extends React.Component {
       console.log(response.data);
       this.props.storestate(response.data);
       this.props.modalclose();
+      window.location.reload();
     })
     .catch(err => {
       this.props.againsubmit();
