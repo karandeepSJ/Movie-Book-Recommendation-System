@@ -33,6 +33,7 @@ public class GetRecommendations {
         projection.append("poster", 1);
         projection.append("backdrop", 1);
         projection.append("rating", 1);
+        projection.append("movieId", 1);
         return mongoTemplate.getCollection("movies").find(baseQuery, projection).toArray();
     }
 
@@ -46,6 +47,7 @@ public class GetRecommendations {
         projection.append("title", 1);
         projection.append("poster", 1);
         projection.append("rating", 1);
+        projection.append("bookId", 1);
         return mongoTemplate.getCollection("books").find(baseQuery, projection).toArray();
     }
 }
