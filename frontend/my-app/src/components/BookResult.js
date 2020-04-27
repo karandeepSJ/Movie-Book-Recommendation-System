@@ -2,11 +2,11 @@ import React from 'react';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
 import { Link } from 'react-router-dom';
 
-function Result({result}) {
+function BookResult({result}) {
 	console.log(result)
 	return (
 		<div>
-			<Link to={`/movie/${result.movieId}`}>
+			<Link to={`/book/${result.bookId}`}>
 			<MDBCol>
 		      <MDBCard style={{ width: "20rem" }}>
 		        <MDBCardImage className="img-fluid" src={result.poster} waves />
@@ -23,4 +23,4 @@ function Result({result}) {
 	)
 }
 
-export default Result
+export default BookResult

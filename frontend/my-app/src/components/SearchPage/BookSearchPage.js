@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Results from '../Results'
-import SideNav from '../Sidebar'
+import BookResults from '../BookResults'
+import BookSideNav from '../BookSideBar'
 import StickyBox from "react-sticky-box/dist/esnext";
 
 
-class SearchPage extends Component {
+class BookSearchPage extends Component {
   	constructor() {
 		
 		super();
@@ -18,7 +18,7 @@ class SearchPage extends Component {
 	componentDidMount(){
 		const query = this.props.match.params.query
 		console.log(query)
-		axios.get('http://localhost:5050/api/m/movies/search?query=' + query)
+		axios.get('http://localhost:5050/api/b/books/search?query=' + query)
 		.then (response => {
 			this.setState({res:response.data})
 			this.setState({loading:false})
@@ -36,12 +36,12 @@ class SearchPage extends Component {
     return(
   		<div className="App">
 	      <main>
-	      	<SideNav />
-	        <Results results={this.state.res}/>
+	      	<BookSideNav />
+	        <BookResults results={this.state.res}/>
 	      </main>
     	</div>
   	)
   }
 	
 }
-export default SearchPage;
+export default BookSearchPage;

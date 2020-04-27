@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Results from '../Results'
-import SideNav from '../Sidebar'
-import StickyBox from "react-sticky-box/dist/esnext";
+import Results from './Results'
+import SideNav from './Sidebar'
 
 
-class SearchPage extends Component {
+class GenrePage extends Component {
   	constructor() {
 		
 		super();
@@ -16,12 +15,13 @@ class SearchPage extends Component {
 	}
 	
 	componentDidMount(){
-		const query = this.props.match.params.query
+		const query = this.props.match.params.genre
 		console.log(query)
-		axios.get('http://localhost:5050/api/m/movies/search?query=' + query)
+		axios.get('http://localhost:5050/api/m/movies/genre/' + query)
 		.then (response => {
 			this.setState({res:response.data})
 			this.setState({loading:false})
+			console.log(this.state.res)
 		})
 		.catch(err => {
 			console.log(err);
@@ -44,4 +44,4 @@ class SearchPage extends Component {
   }
 	
 }
-export default SearchPage;
+export default GenrePage;
