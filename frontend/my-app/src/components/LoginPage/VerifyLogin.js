@@ -19,9 +19,7 @@ export default class VerifyLogin extends React.Component {
     axios.post('http://localhost:5050/api/u/user/login',bodyFormData)
     .then (response => {
       console.log(response.data);
-      this.setState(response.data);
       this.props.storestate(response.data);
-      this.props.changename(response.data.name);
       this.props.modalclose();
     })
     .catch(err => {

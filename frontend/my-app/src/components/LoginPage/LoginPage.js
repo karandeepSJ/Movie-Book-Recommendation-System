@@ -7,7 +7,7 @@ constructor(props) {
     super(props);
     this.state = {
       email: '',
-      password: '',
+      pass: '',
       error: '',
       submit: false,
       name: '',
@@ -43,7 +43,7 @@ constructor(props) {
       return this.setState({ error: 'email is required' });
     }
 
-    if (!this.state.password) {
+    if (!this.state.pass) {
       return this.setState({ error: 'Password is required' });
     }
     this.setState({submit:true})
@@ -58,7 +58,7 @@ constructor(props) {
 
   handlePassChange(evt) {
     this.setState({
-      password: evt.target.value,
+      pass: evt.target.value,
     });
   }
 
@@ -78,7 +78,7 @@ constructor(props) {
           <br/>
           <label>Password</label>
           <br/>
-          <input className="input" type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
+          <input className="input" type="password" data-test="password" value={this.state.pass} onChange={this.handlePassChange} />
           <input className="submit-button" type="submit" value="Log In" data-test="submit"/>
         </form>
           <br/>
@@ -96,7 +96,7 @@ constructor(props) {
           <br/>
           {
             this.state.submit &&
-            <VerifyLogin email={this.state.email} password={this.state.password} modalclose={this.props.modalclose} changename={this.props.changename} againsubmit={this.againsubmit} storestate={this.storestate}/>
+            <VerifyLogin email={this.state.email} password={this.state.pass} modalclose={this.props.modalclose} againsubmit={this.againsubmit} storestate={this.storestate}/>
           }
       </div>
     );
