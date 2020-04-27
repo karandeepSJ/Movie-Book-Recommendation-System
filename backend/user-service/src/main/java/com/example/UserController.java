@@ -26,7 +26,7 @@ public class UserController {
     private UserRepo userRepo;
 
     @Autowired
-    private RatingHelper ratingHelper;
+    private RatingUtils ratingUtils;
 
     @RequestMapping(method = RequestMethod.POST, value = "/login")
     public ResponseEntity<Map<String, String>> userLogin(@RequestParam(value = "email") String email,
@@ -40,12 +40,12 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET, value = "/movieRating")
     public DBObject getMovieRating(@RequestParam(value = "userId") Long userId,
                 @RequestParam(value = "movieId") Long movieId) {
-        return ratingHelper.getMovieRatingForUser(userId, movieId);
+        return ratingUtils.getMovieRatingForUser(userId, movieId);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/bookRating")
     public DBObject getbookRating(@RequestParam(value = "userId") Long userId,
                 @RequestParam(value = "bookId") String bookId) {
-        return ratingHelper.getBookRatingForUser(userId, bookId);
+        return ratingUtils.getBookRatingForUser(userId, bookId);
     }
 }

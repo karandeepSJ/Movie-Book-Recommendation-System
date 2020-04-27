@@ -19,62 +19,17 @@ public class RatingController {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    @Autowired
+    private RatingUtils ratingUtils;
+
     @RequestMapping(method = RequestMethod.GET, value = "/movie")
     public DBObject updateMovieRating(@RequestParam(value = "userId") Long userId,
                               @RequestParam(value = "movieId") Long movieId,
                               @RequestParam(value = "rating") Double rating) {
-        BasicDBObject query = new BasicDBObject();
-        BasicDBObject projection = new BasicDBObject();
-        projection.append("_id", 0);
-        query.append("userId", userId);
-        query.append("movieId", movieId);
-        DBObject userRating = mongoTemplate.getCollection("movieRatings").findOne(query, projection);
-        BasicDBObject movieQuery = new BasicDBObject();
-        movieQuery.append("movieId", movieId);
-        BasicDBObject movieProjection = new BasicDBObject();
-        movieProjection.append("_id", 0);
-        movieProjection.append("movieId", 1);
-        movieProjection.append("rating", 1);
-        movieProjection.append("ratingSum", 1);
-        movieProjection.append("ratingCount", 1);
-        DBObject movie = mongoTemplate.getCollection("movies").findOne(movieQuery, movieProjection);
-        Double ratingSum;
-        Double movieRating;
-        try{
-            ratingSum = (Double) movie.get("ratingSum");
-        } catch(ClassCastException e){
-            ratingSum = Double.valueOf((Integer) movie.get("ratingSum"));
-        }
-        try{
-            movieRating = (Double) movie.get("rating");
-        } catch(ClassCastException e){
-            movieRating = Double.valueOf((Integer) movie.get("rating"));
-        }
-        Integer ratingCount = (Integer) movie.get("ratingCount");
-        if(userRating == null){
-            ratingSum += rating;
-            ratingCount++;
-            movieRating = (Double)ratingSum / ratingCount;
-            query.append("rating", rating);
-            mongoTemplate.getCollection("movieRatings").insert(query);
-        }
-        else{
-            ratingSum += (rating - (Double) userRating.get("rating"));
-            movieRating = (Double)ratingSum / ratingCount;
-            BasicDBObject updateFields = new BasicDBObject();
-            updateFields.append("rating", rating);
-            BasicDBObject setQuery = new BasicDBObject();
-            setQuery.append("$set", updateFields);
-            mongoTemplate.getCollection("movieRatings").update(query, setQuery);
-        }
-        BasicDBObject updateFields = new BasicDBObject();
-        updateFields.append("ratingSum", ratingSum);
-        updateFields.append("ratingCount", ratingCount);
-        updateFields.append("rating", movieRating);
-        BasicDBObject setQuery = new BasicDBObject();
-        setQuery.append("$set", updateFields);
-        mongoTemplate.getCollection("movies").update(movieQuery, setQuery);
-        return mongoTemplate.getCollection("movies").findOne(movieQuery, movieProjection);
+        DBObject prevRatingObj = ratingUtils.getMovieRatingForUser(userId, movieId);
+        ratingUtils.updateMovieRating(movieId, rating, prevRatingObj);
+        ratingUtils.updateUserRatingForMovie(movieId, userId, prevRatingObj, rating);
+        return ratingUtils.getMovieRating(movieId);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/book")
