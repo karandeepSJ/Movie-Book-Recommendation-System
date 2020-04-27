@@ -149,7 +149,7 @@ render() {
                           }} >Book</NavLink></MDBDropdownItem>
                 <MDBDropdownItem onClick={this.selectmovie}>
                 <NavLink to={{
-                          pathname: '/search',
+                          pathname: '/search/' + this.state.inputValue,
                           state: {
                             query: this.state.inputValue
                           }
