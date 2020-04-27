@@ -26,14 +26,19 @@ function LoginButton(props) {
 }
 
 function LogoutButton(props) {
+  var check = JSON.parse(localStorage.getItem("user"))
   return (
     <MDBNavbarNav right>
+    <MDBNavItem>
+    <MDBNavLink to="/home">Hi {check.name}</MDBNavLink>
+    </MDBNavItem>
       <MDBNavItem>
        <MDBBtn rounded size="sm" onClick={props.onClick}>Logout</MDBBtn>
       </MDBNavItem>
     </MDBNavbarNav>
   );
 }
+
 
 class NavbarPage extends Component {
 
@@ -160,13 +165,13 @@ render() {
           <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
           <MDBModalHeader toggle={this.toggle}>Login</MDBModalHeader>
           <MDBModalBody style={modalBG}>
-            <LoginPage modalclose={this.toggle} changename={this.changename}/>
+            <LoginPage modalclose={this.toggle}/>
           </MDBModalBody>
           </MDBModal>
           <MDBModal isOpen={this.state.signupmodal} toggle={this.signuptoggle} >
           <MDBModalHeader toggle={this.signuptoggle}>Register</MDBModalHeader>
           <MDBModalBody style={modalBG}>
-            <SignUp modalclose={this.signuptoggle} changename={this.changename}/>
+            <SignUp modalclose={this.signuptoggle}/>
           </MDBModalBody>
           </MDBModal>
         </MDBCollapse>
