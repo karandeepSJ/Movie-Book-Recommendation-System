@@ -18,6 +18,8 @@ import org.springframework.data.mongodb.repository.Query;
 public interface MovieRepo extends MongoRepository<Movies, String>{
     public Movies findByMovieId(Long movieId);
 
+    public List<Movies> findByGenres(String genre);
+
     @Query("{'$text' : {'$search' : ?0}}")
     public List<Movies> findMatchingMovies(String query, Sort sort);
 
