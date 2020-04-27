@@ -33,23 +33,13 @@ hr {
   padding-top: 20px;
   color: white;
   padding-bottom: 0px;
-  background-color: rgba(47,100,90,.8);
-  background: -moz-linear-gradient(
-    left, 
-    rgba(47,100,90,1) 0%, 
-    rgba(111,161,123,1) 100%
-  );
-  background: -webkit-gradient(
+  /*background-color: rgba(47,100,90,.8);*/
+  /*background: -webkit-gradient(
     left top, 
     right top, 
     color-stop(0%, rgba(47,100,90,1)), 
     color-stop(100%, rgba(111,161,123,1))
-  );
-  background: -webkit-linear-gradient(
-    left, 
-    rgba(47,100,90,1) 0%, 
-    rgba(111,161,123,1) 100%
-  );
+  *//*);*/
   /*height: 340px;
   width: 400px;
   -webkit-box-shadow: 10px 10px 15px -6px rgba(0,0,0,0.25);

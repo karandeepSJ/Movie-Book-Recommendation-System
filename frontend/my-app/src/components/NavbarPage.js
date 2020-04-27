@@ -7,6 +7,10 @@ import SignUp from "./LoginPage/SignUp"
 import { MDBContainer, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 import { BrowserRouter as Router } from 'react-router-dom';
 
+const modalBG = {
+  background: "-webkit-linear-gradient(left,rgba(47,100,90,1) 0%,rgba(111,161,123,1) 100%)",
+}
+
 function LoginButton(props) {
   return (
     <MDBNavbarNav right>
@@ -162,15 +166,15 @@ render() {
             </MDBNavItem>
           </MDBNavbarNav>
            {button}
-          <MDBModal isOpen={this.state.modal} toggle={this.toggle} >
+          <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
           <MDBModalHeader toggle={this.toggle}>Login</MDBModalHeader>
-          <MDBModalBody>
+          <MDBModalBody style={modalBG}>
             <LoginPage modalclose={this.toggle} changename={this.changename}/>
           </MDBModalBody>
           </MDBModal>
           <MDBModal isOpen={this.state.signupmodal} toggle={this.signuptoggle} >
-          <MDBModalHeader toggle={this.signuptoggle}>Login</MDBModalHeader>
-          <MDBModalBody>
+          <MDBModalHeader toggle={this.signuptoggle}>Register</MDBModalHeader>
+          <MDBModalBody style={modalBG}>
             <SignUp modalclose={this.signuptoggle} changename={this.changename}/>
           </MDBModalBody>
           </MDBModal>

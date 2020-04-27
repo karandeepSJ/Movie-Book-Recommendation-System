@@ -1,6 +1,6 @@
 import React from "react";
 import VerifyLogin from "./VerifyLogin";
-import "../../style.css"
+import "./style.css"
 
 export default class LoginPage extends React.Component {
 constructor(props) {
