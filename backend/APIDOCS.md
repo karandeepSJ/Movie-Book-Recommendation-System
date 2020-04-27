@@ -16,3 +16,6 @@
 - get rating for book: `http://localhost:5050/api/u/user/bookRating?userId=1&bookId=10`
 - rate movie: `http://localhost:5050/api/u/rate/movie?userId=1&movieId=10&rating=2`
 - rate book: `http://localhost:5050/api/u/rate/book?userId=9&bookId=0020198906&rating=1`
+
+# Recommendation API
+- get Recommendations: `http://localhost:5050/api/r/recommend?movieDbId=68&bookDbId=78973`
