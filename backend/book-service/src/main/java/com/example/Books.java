@@ -5,6 +5,8 @@
  */
 package com.example;
 
+import java.util.ArrayList;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -42,6 +44,8 @@ public class Books {
     public Long num_pages;
 
     public String description;
+
+    public ArrayList<String> genres;
 
     @TextScore
     public Float score;

@@ -8,8 +8,11 @@
 
 # Books API
 - search: `http://localhost:5050/api/b/books/search?query=Toy%20Story`
+- search with genre: `http://localhost:5050/api/b/books/search?query=Toy%20Story&genre=thriller`
 - recommendations: `http://localhost:5050/api/b/books/recommendations`
 - book details: `http://localhost:5050/api/b/books/details/{bookId}`
+- list of genres: `http://localhost:5050/api/b/books/genres`
+- all movies of genre: `http://localhost:5050/api/b/books/genre/{genreName}`
 
 # User API
 - login (POST, form attributes: (email, password)): `http://localhost:5050/api/u/user/login`

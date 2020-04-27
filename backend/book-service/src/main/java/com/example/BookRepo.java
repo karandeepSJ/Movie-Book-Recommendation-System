@@ -18,6 +18,11 @@ import org.springframework.data.mongodb.repository.Query;
 public interface BookRepo extends MongoRepository<Books, String>{
     public Books findByBookId(String bookId);
 
+    public List<Books> findByGenres(String genre);
+
     @Query("{'$text' : {'$search' : ?0}}")
     public List<Books> findMatchingBooks(String query, Sort sort);
+
+    @Query("{'$text' : {'$search' : ?0}, 'genres' : {'$in' : [?1]}}")
+    public List<Books> findMatchingBooksInGenre(String query, String genre, Sort sort);
 }
