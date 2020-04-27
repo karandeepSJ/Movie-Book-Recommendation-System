@@ -17,15 +17,21 @@ hr {
 
 .login {
   /*background: rgba(47,100,90,1);*/
-  opacity: 1;
+  
   visiblity: visible;
+  
+ /* 
+ opacity: 1;
   position: absolute;
   z-index: 1000;
   top: 50%;
   left: 50%;
   margin-top: -230px;
-  margin-left: -210px;
+  margin-left: -230px;*/
+  text-align: center;
+
   padding-top: 20px;
+  color: white;
   padding-bottom: 0px;
   background-color: rgba(47,100,90,.8);
   background: -moz-linear-gradient(
@@ -44,12 +50,13 @@ hr {
     rgba(47,100,90,1) 0%, 
     rgba(111,161,123,1) 100%
   );
-  height: 440px;
+  /*height: 340px;
   width: 400px;
-  color: white;
-  text-align: center;
-  border-radius: 2px;
   -webkit-box-shadow: 10px 10px 15px -6px rgba(0,0,0,0.25);
+  */
+  color: white;
+  border-radius: 2px;
+  
   transition: 
     opacity .3s ease-in .3s,
     visibility .3s ease-in .3s;
@@ -109,7 +116,7 @@ hr {
 }
 
 .input {
-  margin: 5px;
+  margin: 20px;
   width: 300px;
   margin-left: -5px;
   height: 40px;
