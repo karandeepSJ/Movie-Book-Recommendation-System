@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { MDBNavbar, MDBNavbarNav, MDBNavItem, MDBBtn, MDBFormInline, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
 MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
 import { NavLink} from 'react-router-dom';
+import LoginPage from "./LoginPage/LoginPage";
+import SignUp from "./LoginPage/SignUp"
 import { MDBContainer, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -12,7 +14,7 @@ function LoginButton(props) {
        <MDBBtn rounded size="sm" onClick={props.onClick}>Login</MDBBtn>
       </MDBNavItem>
     <MDBNavItem>
-       <MDBBtn rounded size="sm" onClick={props.onClick}>Signup</MDBBtn>
+       <MDBBtn rounded size="sm" onClick={props.signupclick}>Signup</MDBBtn>
       </MDBNavItem>
     </MDBNavbarNav>
 
@@ -35,12 +37,15 @@ class NavbarPage extends Component {
     super(props);
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
+    this.handleSignupClick = this.handleSignupClick.bind(this);
+    this.changename = this.changename.bind(this);
     this.state = {
       isLoggedIn: props.isLoggedIn,
       isOpen: false,
       value: 'Search',
-      name: props.name,
+      name: '',
       modal: false,
+      signupmodal:false,
       inputValue: ''
     };
   }
@@ -49,14 +54,27 @@ class NavbarPage extends Component {
     modal: !this.state.modal
   });
 }
+signuptoggle = () => {
+  this.setState({
+    signupmodal: !this.state.signupmodal
+  });
+}
+
+  changename(uname){
+    this.setState({name:uname});
+    this.setState({isLoggedIn: true});
+  }
 
   handleLoginClick() {
-    this.setState({isLoggedIn: true});
     this.toggle()
   }
 
   handleLogoutClick() {
     this.setState({isLoggedIn: false});
+  }
+
+  handleSignupClick(){
+    this.signuptoggle()
   }
 toggleCollapse = () => {
   this.setState({ isOpen: !this.state.isOpen });
@@ -80,7 +98,7 @@ render() {
       button =<LogoutButton onClick={this.handleLogoutClick} name={this.state.name}/>
           
     } else {
-      button = <LoginButton onClick={this.handleLoginClick} name={this.state.name}/>;    
+      button = <LoginButton onClick={this.handleLoginClick} signupclick={this.handleSignupClick} name={this.state.name}/>;    
     }
   return (
     <Router>
@@ -141,10 +159,16 @@ render() {
             </MDBNavItem>
           </MDBNavbarNav>
            {button}
-          <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
+          <MDBModal isOpen={this.state.modal} toggle={this.toggle} >
           <MDBModalHeader toggle={this.toggle}>Login</MDBModalHeader>
           <MDBModalBody>
-            <NavLink to="/api/u/login"></NavLink>
+            <LoginPage modalclose={this.toggle} changename={this.changename}/>
+          </MDBModalBody>
+          </MDBModal>
+          <MDBModal isOpen={this.state.signupmodal} toggle={this.signuptoggle} >
+          <MDBModalHeader toggle={this.signuptoggle}>Login</MDBModalHeader>
+          <MDBModalBody>
+            <SignUp modalclose={this.signuptoggle} changename={this.changename}/>
           </MDBModalBody>
           </MDBModal>
         </MDBCollapse>
