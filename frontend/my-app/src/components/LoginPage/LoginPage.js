@@ -6,7 +6,7 @@ export default class LoginPage extends React.Component {
 constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      email: '',
       password: '',
       error: '',
       submit: false,
@@ -17,7 +17,12 @@ constructor(props) {
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.dismissError = this.dismissError.bind(this);
+    this.storestate = this.storestate.bind(this);
     this.againsubmit = this.againsubmit.bind(this);
+  }
+
+  storestate(data){
+    this.setState(data);
   }
 
   againsubmit(){
@@ -34,8 +39,8 @@ constructor(props) {
   handleSubmit(evt) {
     evt.preventDefault();
 
-    if (!this.state.username) {
-      return this.setState({ error: 'Username is required' });
+    if (!this.state.email) {
+      return this.setState({ error: 'email is required' });
     }
 
     if (!this.state.password) {
@@ -47,7 +52,7 @@ constructor(props) {
 
   handleUserChange(evt) {
     this.setState({
-      username: evt.target.value,
+      email: evt.target.value,
     });
   };
 
@@ -55,6 +60,10 @@ constructor(props) {
     this.setState({
       password: evt.target.value,
     });
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem('user', JSON.stringify(nextState));
   }
 
   render() {
@@ -65,7 +74,7 @@ constructor(props) {
           <br/>
           <label>Email</label>
           <br/>
-          <input className="input" type="text" data-test="username" value={this.state.username} onChange={this.handleUserChange}/>
+          <input className="input" type="text" data-test="email" value={this.state.email} onChange={this.handleUserChange}/>
           <br/>
           <label>Password</label>
           <br/>
@@ -87,10 +96,11 @@ constructor(props) {
           <br/>
           {
             this.state.submit &&
-            <VerifyLogin email={this.state.username} password={this.state.password} modalclose={this.props.modalclose} changename={this.props.changename} againsubmit={this.againsubmit}/>
+            <VerifyLogin email={this.state.email} password={this.state.password} modalclose={this.props.modalclose} changename={this.props.changename} againsubmit={this.againsubmit} storestate={this.storestate}/>
           }
       </div>
     );
   }
 }
+
 
