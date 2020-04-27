@@ -68,6 +68,7 @@ signuptoggle = () => {
 
   handleLogoutClick() {
     localStorage.clear()
+    window.location.reload(true);
   }
 
   handleSignupClick(){
