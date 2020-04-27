@@ -1,8 +1,9 @@
 import React from "react";
 import { MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardImage,
 MDBCardBody, MDBCardText } from "mdbreact";
+import './Recommendation.css'
 
-class MultiCarouselPage extends React.Component {
+class Recommendation extends React.Component {
 
     constructor(props) {
         super(props);
@@ -20,27 +21,28 @@ class MultiCarouselPage extends React.Component {
         if (movieDbId) {
             url += movieDbId;
         } else {
-            url += '0'
+            url += '1'
         }
         if (bookDbId) {
             url += '&' + 'bookDbId=' + bookDbId;
         } else {
             url += '&' + 'bookDbId=0';
         }
-         console.log(url);
-        fetch(url)
-            .then(res => res.json())
-            .then(json => {
-                this.setState({
-                    isLoaded: true,
-                    data: json,
-                })
-            });
+        //  console.log(url);
+        // fetch(url)
+        //     .then(res => res.json())
+        //     .then(json => {
+        //         this.setState({
+        //             isLoaded: true,
+        //             data: json,
+        //         })
+        //     });
     }
 
     render() {
 
-        const { isLoaded, data } = this.state;
+        var { isLoaded, data } = this.state;
+            isLoaded = true;
         if (!isLoaded) {
             return <div>Loading....</div>
         }
@@ -105,4 +107,4 @@ class Col extends React.Component {
     }
 }
 
-export default MultiCarouselPage;
+export default Recommendation;

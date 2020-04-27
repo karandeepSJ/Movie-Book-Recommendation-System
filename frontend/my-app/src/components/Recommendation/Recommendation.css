@@ -1,0 +1,9 @@
+.carousel-control-prev {
+    background: linear-gradient(transparent, black, transparent);
+    width: 7% !important;
+}
+
+.carousel-control-next {
+    background: linear-gradient(transparent, black, transparent);
+    width: 7% !important;
+}
