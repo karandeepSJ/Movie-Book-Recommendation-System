@@ -13,6 +13,7 @@ const MoviesWrapper = styled.div`
 `;
 
 function Results ({results}) {
+	console.log(results)
 	return (
 		<div>
 			<section className="results">
