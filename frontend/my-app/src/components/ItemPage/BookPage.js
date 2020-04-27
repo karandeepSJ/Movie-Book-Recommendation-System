@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 class BookPage extends Component {
   render() {
-  	return ""
-  	
+  	return "" 	
   }
 }
 export default BookPage;
+
