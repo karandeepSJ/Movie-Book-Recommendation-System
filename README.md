@@ -4,8 +4,8 @@ A movie and book recommendation website with collaborative filtering
 # Installation instructions
 ## backend
 - Install java 8: `sudo apt-get install openjdk-8-jdk`
-- Set `JAVA_HOME` by adding the following command in `.bashrc` file  : `export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-amd64"`
 - Install maven: `sudo apt install maven`
+- Set `JAVA_HOME` by adding the following command in `.bashrc` file  : `export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-amd64"`
 - Restart the terminal after installation
 
 # Running instructions
