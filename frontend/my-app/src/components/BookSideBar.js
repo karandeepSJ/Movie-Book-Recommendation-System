@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
 
-const StyledSideNav = styled.div`   
-    position: fixed;     /* Fixed Sidebar (stay in place on scroll and position relative to viewport) */
+const StyledBookSideNav = styled.div`   
+    position: fixed;     /* Fixed BookSidebar (stay in place on scroll and position relative to viewport) */
     height: 100%;
-    width: 100px;     /* Set the width of the sidebar */
+    width: 100px;     /* Set the width of the BookSidebar */
     z-index: 1;      /* Stay on top of everything */
     top: 3.4em;      /* Stay at the top */
     background-color: #222; /* Black */
@@ -15,7 +15,7 @@ const StyledSideNav = styled.div`
     padding-top: 10px;
 `;
 
-class SideNav extends React.Component {
+class BookSideNav extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,7 +26,7 @@ class SideNav extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:5050/api/m/movies/genres')
+        fetch('http://localhost:5050/api/b/books/genres')
             .then(res => res.json())
             .then(json => {
                 this.setState({
@@ -38,7 +38,7 @@ class SideNav extends React.Component {
 
     onItemClick = (path) => {
         console.log(path)
-        path = '/searching' + path;
+        path = '/booksearching' + path;
         this.setState({ activePath: path });
     }
 
@@ -51,7 +51,7 @@ class SideNav extends React.Component {
         else {
             const items = arrayToObjArray(genres);
             return(
-                <StyledSideNav>
+                <StyledBookSideNav>
                     {
                         items.map((item) => {
                             return (
@@ -64,7 +64,7 @@ class SideNav extends React.Component {
                             );
                         })
                     }
-                </StyledSideNav>
+                </StyledBookSideNav>
             );
         }
     }
@@ -77,18 +77,18 @@ function arrayToObjArray(array) {
         var obj = {};
 		var curVal = array[i];
         obj['name'] = curVal;
-        obj['path'] = '/searching/'+curVal;
+        obj['path'] = '/booksearching/'+curVal;
         finArr.push(obj);
     }
 	return finArr;
 }
 
-const RouterSideNav = withRouter(SideNav);
+const RouterBookSideNav = withRouter(BookSideNav);
 
 const StyledNavItem = styled.div`
     height: 70px;
     width: 75px; /* width must be same size as NavBar to center */
-    text-align: center; /* Aligns <a> inside of NavIcon div */
+    text-align: center; /* Aligns <a> inBookSide of NavIcon div */
     margin-bottom: 0;   /* Puts space between NavItems */
     a {
         font-size: 2.7em;
@@ -123,10 +123,10 @@ const NavIcon = styled.div`
 
 `;
 
-export default class Sidebar extends React.Component {
+export default class BookSidebar extends React.Component {
     render() {
         return (
-            <RouterSideNav></RouterSideNav>
+            <RouterBookSideNav></RouterBookSideNav>
         );
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import Result from './Result'
+import BookResult from './BookResult'
 
 const MoviesWrapper = styled.div`
   display: grid;
@@ -12,14 +12,14 @@ const MoviesWrapper = styled.div`
   grid-gap: 4rem 2rem;
 `;
 
-function Results ({results}) {
+function BookResults ({results}) {
 	console.log({results})
 	return (
 		<div>
 			<section className="results">
 				<MoviesWrapper>
 				{results.map(result => (
-					<Result key={result.movieId} result={result} />
+					<BookResult key={result.bookID} result={result} />
 				))}
 				</MoviesWrapper>
 			</section>
@@ -27,4 +27,4 @@ function Results ({results}) {
 	)
 }
 
-export default Results
+export default BookResults
