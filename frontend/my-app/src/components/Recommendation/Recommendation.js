@@ -21,7 +21,7 @@ class Recommendation extends React.Component {
         if (movieDbId) {
             url += movieDbId;
         } else {
-            url += '1'
+            url += '0'
         }
         if (bookDbId) {
             url += '&' + 'bookDbId=' + bookDbId;
@@ -51,15 +51,16 @@ class Recommendation extends React.Component {
             console.log(data);
             return (
                 <MDBContainer>
-                    <MDBCarousel activeItem={1} length={3} slide={true} showControls={true} showIndicators={false}>
+                    <MDBCarousel activeItem={1} length={Math.ceil(this.state.data.length/3)} slide={true} showControls={true} showIndicators={false}>
                         <MDBCarouselInner>
                             <MDBRow>
                             {
                                 data.map((rec, index) => {
                                     const  str = index/3+1;
                                     if ( index %3 === 0 && index + 3 <= data.length) {
+
                                         return (
-                                            <MDBCarouselItem itemId={{str}}>
+                                            <MDBCarouselItem itemId={str.toString()}>
                                             <Col 
                                                 poster={rec.poster}
                                                 rating={rec.rating}
@@ -98,7 +99,7 @@ class Col extends React.Component {
                   <MDBCardImage className="img-fluid" src={this.props.poster} />
                   <MDBCardBody>
                     <MDBCardText style={{textAlign: 'center', fontWeight:'bold'}}>
-                        {this.props.rating}
+                        Rating: {this.props.rating}
                     </MDBCardText>
                   </MDBCardBody>
                 </MDBCard>
