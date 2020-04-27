@@ -1,20 +1,23 @@
 import React from "react";
-import VerifyLogin from "./VerifyLogin";
 import "../../style.css"
 
-export default class LoginPage extends React.Component {
+export default class SignUp extends React.Component {
 constructor(props) {
     super(props);
     this.state = {
       username: '',
       password: '',
+      email: '',
       error: '',
+      password2:'',
       submit: false,
       name: '',
       failure: ''
     };
     this.handlePassChange = this.handlePassChange.bind(this);
+    this.handlePass2Change = this.handlePass2Change.bind(this);
     this.handleUserChange = this.handleUserChange.bind(this);
+    this.handlemailChange = this.handlemailChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.dismissError = this.dismissError.bind(this);
     this.againsubmit = this.againsubmit.bind(this);
@@ -37,11 +40,20 @@ constructor(props) {
     if (!this.state.username) {
       return this.setState({ error: 'Username is required' });
     }
-
+    if (!this.state.email) {
+      return this.setState({ error: 'Email is required' });
+    }
     if (!this.state.password) {
       return this.setState({ error: 'Password is required' });
     }
-    this.setState({submit:true})
+    if (!this.state.password2) {
+      return this.setState({ error: 'Retype Password' });
+    }
+    if(!(this.state.password===this.state.password2)){
+      return this.setState({ error: 'Password does not match' });
+    }
+    this.props.modalclose();
+
     return this.setState({ error: '' });
   }
 
@@ -56,21 +68,44 @@ constructor(props) {
       password: evt.target.value,
     });
   }
+  handlePass2Change(evt) {
+    this.setState({
+      password2: evt.target.value,
+    });
+  }
+  handlemailChange(evt) {
+    this.setState({
+      email: evt.target.value,
+    });
+  }
 
   render() {
+    // NOTE: I use data-attributes for easier E2E testing
+    // but you don't need to target those (any css-selector will work)
+    // if(!this.props.show){
+    //       return null;
+    //   }
 
     return (
       <div className="login">
         <form onSubmit={this.handleSubmit}>
           <br/>
-          <label>Email</label>
+          <label>User Name</label>
           <br/>
           <input className="input" type="text" data-test="username" value={this.state.username} onChange={this.handleUserChange}/>
+          <br/>
+          <label>Email</label>
+          <br/>
+          <input className="input" type="text" data-test="email" value={this.state.email} onChange={this.handlemailChange}/>
           <br/>
           <label>Password</label>
           <br/>
           <input className="input" type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
-          <input className="submit-button" type="submit" value="Log In" data-test="submit"/>
+          <br/>
+          <label>Retype Password</label>
+          <br/>
+          <input className="input" type="password" data-test="password2" value={this.state.password2} onChange={this.handlePass2Change} />
+          <input className="submit-button" type="submit" value="Sign Up" data-test="submit"/>
         </form>
           <br/>
           {
@@ -83,11 +118,6 @@ constructor(props) {
           {
             this.state.failure && 
             <h6>Incorrect Id or Password{this.state.switch}</h6>
-          }
-          <br/>
-          {
-            this.state.submit &&
-            <VerifyLogin email={this.state.username} password={this.state.password} modalclose={this.props.modalclose} changename={this.props.changename} againsubmit={this.againsubmit}/>
           }
       </div>
     );
