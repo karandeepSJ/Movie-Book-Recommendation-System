@@ -8,12 +8,12 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RatingUtils {
+public class MovieRatingUtils {
 
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public DBObject getMovieRatingForUser(Long userId, Long movieId){
+    public DBObject getRatingForUser(Long userId, Long movieId){
         BasicDBObject query = new BasicDBObject();
         BasicDBObject projection = new BasicDBObject();
         query.append("userId", userId);
@@ -22,16 +22,7 @@ public class RatingUtils {
         return mongoTemplate.getCollection("movieRatings").findOne(query, projection);
     }
 
-    public DBObject getBookRatingForUser(Long userId, String bookId){
-        BasicDBObject query = new BasicDBObject();
-        BasicDBObject projection = new BasicDBObject();
-        query.append("userId", userId);
-        query.append("bookId", bookId);
-        projection.append("_id", 0);
-        return mongoTemplate.getCollection("bookRatings").findOne(query, projection);
-    }
-
-    public DBObject getMovieRating(Long movieId){
+    public DBObject getRating(Long movieId){
         BasicDBObject movieQuery = new BasicDBObject();
         BasicDBObject movieProjection = new BasicDBObject();
         movieQuery.append("movieId", movieId);
@@ -43,14 +34,14 @@ public class RatingUtils {
         return mongoTemplate.getCollection("movies").findOne(movieQuery, movieProjection);
     }
 
-    public void updateMovieRating(Long movieId, Double newUserRating, DBObject prevRatingObj){
-        DBObject movie = getMovieRating(movieId);
+    public void updateRating(Long movieId, Double newUserRating, DBObject prevRatingObj){
+        DBObject movie = getRating(movieId);
         RatingDTO movieRatingObj = new RatingDTO(movie);
         movieRatingObj.updateRating(prevRatingObj, newUserRating);
-        updateMovieCollection(movieId, movieRatingObj);
+        updateCollection(movieId, movieRatingObj);
     }
 
-    public void updateMovieCollection(Long movieId, RatingDTO movieRatingObj) {
+    public void updateCollection(Long movieId, RatingDTO movieRatingObj) {
         BasicDBObject movieQuery = new BasicDBObject();
         BasicDBObject updateFields = new BasicDBObject();
         BasicDBObject setQuery = new BasicDBObject();
@@ -62,7 +53,7 @@ public class RatingUtils {
         mongoTemplate.getCollection("movies").update(movieQuery, setQuery);
     }
 
-    public void updateUserRatingForMovie(Long movieId, Long userId, DBObject prevRatingObj, Double newUserRating){
+    public void updateUserRating(Long movieId, Long userId, DBObject prevRatingObj, Double newUserRating){
         BasicDBObject query = new BasicDBObject();
         BasicDBObject updateFields = new BasicDBObject();
         BasicDBObject setQuery = new BasicDBObject();
