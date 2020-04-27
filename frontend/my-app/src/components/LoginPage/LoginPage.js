@@ -7,6 +7,7 @@ constructor() {
       username: '',
       password: '',
       error: '',
+      toggle: false,
     };
 
     this.handlePassChange = this.handlePassChange.bind(this);
@@ -55,7 +56,9 @@ constructor() {
     return (
       <div className="login">
         <form onSubmit={this.handleSubmit}>
-          
+        <div className={this.state.toggle ? "login login-closed" : ""} >
+
+          <h1>Log In</h1>
           <label>User Name</label>
           <br/>
           <input className="input" type="text" data-test="username" value={this.state.username} onChange={this.handleUserChange} />
@@ -65,15 +68,49 @@ constructor() {
           <input className="input" type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
 
           <input className="submit-button" type="submit" value="Log In" data-test="submit"/>
+          <p className="in-out"> 
+            Don't have an account? {" "}
+            <a href="#" onClick={()=>this.setState({
+              toggle: true
+            })}>Sign Up Here</a>
+          </p>
           {
             this.state.error &&
-            <h3 data-test="error" onClick={this.dismissError}>
+            <h4 data-test="error" onClick={this.dismissError}>
               <button className="button-error" onClick={this.dismissError}>✖</button>
               {this.state.error}
-            </h3>
+            </h4>
           }
+        </div>
+        <div className={!this.state.toggle ? "sign-up sign-up-closed" : ""}> 
+          <h1>Sign Up</h1>
+          <label>User Name</label>
+          <br/>
+          <input className="input" type="text" data-test="username" value={this.state.username} onChange={this.handleUserChange} />
+          <br/>
+          <label>Password</label>
+          <br/>
+          <input className="input" type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
+
+          <input className="submit-button" type="submit" value="Sign Up" data-test="submit"/>
+          
+          <p className="in-out"> 
+            Login after Sign up{" "}
+            <a href="#" onClick={()=>this.setState({
+              toggle: false
+            })}>Log In Here</a>
+          </p>
+          {
+            this.state.error &&
+            <h4 data-test="error" onClick={this.dismissError}>
+              <button className="button-error" onClick={this.dismissError}>✖</button>
+              {this.state.error}
+            </h4>
+          }
+        </div>
         </form>
       </div>
+
     );
   }
 }
