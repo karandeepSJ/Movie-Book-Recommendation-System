@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import Star from '../Star'
+
 import {
 	MDBMask,
 	MDBView,
@@ -47,7 +49,7 @@ class BookPage extends Component {
 		  						backgroundImage: `url(${this.state.poster})`,
 		  						backgroundPosition: "center",
 									backgroundRepeat: "no-repeat",
-									backgroundSize: "cover"
+									backgroundSize: "contain"
 		  					}}>
 		  					</MDBCol>
 		  					<MDBCol size="7" className="mt-4" style={{color: "#0e0e0e"}}>
@@ -89,6 +91,9 @@ class BookPage extends Component {
 			  								</div>
 		  								</MDBCol>
 		  							</MDBRow>
+		  							<div className="d-flex justify-content-center">
+			  							<Star/>
+			  						</div>
 		  						</MDBCardBody>
 		  					</MDBCol>
 		  				</MDBRow>
