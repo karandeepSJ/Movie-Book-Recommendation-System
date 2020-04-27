@@ -10,12 +10,13 @@ class GenrePage extends Component {
 		super();
 	    this.state = {
 	    	res:[],
-	    	loading:true
+	    	loading:true,
 	    };
 	}
 	
+	
 	componentDidMount(){
-		const query = this.props.match.params.genre
+  		const query = this.props.match.params.genre
 		console.log(query)
 		axios.get('http://localhost:5050/api/m/movies/genre/' + query)
 		.then (response => {
