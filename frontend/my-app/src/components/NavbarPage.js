@@ -103,7 +103,7 @@ render() {
           <MDBNavbarNav left>
 
             <MDBNavItem>
-            <img src="Movie-Book-icon.png" alt="" style={{ width: "40px" }} />
+            <img src={process.env.PUBLIC_URL + "Movie-Book-icon.png"} alt="" style={{ width: "40px" }} />
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink className="waves-effect waves-light" to="/home">

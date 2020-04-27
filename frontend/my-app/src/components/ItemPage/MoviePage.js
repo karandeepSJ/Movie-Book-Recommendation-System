@@ -22,13 +22,22 @@ class MoviePage extends Component {
 	constructor() {
 		super();
 	    this.state = {
+	    	validMovie: false,
 	    };
 	}
 	componentDidMount() {
 		const movieId = this.props.match.params.id
 		axios.get(`http://localhost:5050/api/m/movies/details/${movieId}`)
 		.then (response => {
-			this.setState(response.data);
+			if(!response.data)
+			{
+				this.props.history.push('/error')
+			}
+			else	
+			{
+				this.setState(response.data);
+				this.setState({validMovie: true});
+			}
 		})
 		.catch(err => {
 			console.log(err);
@@ -47,6 +56,8 @@ class MoviePage extends Component {
 	}
 
 	render() {
+		if (!this.state.validMovie)
+			return ("")
 	  	return (
 	  		<MDBView>
 		  		<div

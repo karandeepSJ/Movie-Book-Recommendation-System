@@ -12,22 +12,25 @@ class Star extends Component{
 	    this.changeRating = this.changeRating.bind(this);
 	}
 	componentDidMount() {
-		const user_id = JSON.parse(localStorage.getItem("user")).userId;
-		const path = window.location.pathname.split('/');
-		if(path[1]==="movie")
-			var api_url = `http://localhost:5050/api/u/user/movieRating?userId=${user_id}&movieId=${path[2]}`
-		else
-			var api_url = `http://localhost:5050/api/u/user/bookRating?userId=${user_id}&bookId=${path[2]}`
-		axios.get(api_url)
-		.then (response => {
-			if(response.data)
-				this.setState({currentRating: response.data.rating, editable: false})
+		if (localStorage.getItem("user"))
+		{
+			const user_id = JSON.parse(localStorage.getItem("user")).userId;
+			const path = window.location.pathname.split('/');
+			if(path[1]==="movie")
+				var api_url = `http://localhost:5050/api/u/user/movieRating?userId=${user_id}&movieId=${path[2]}`
 			else
-				this.setState({currentRating: 0, editable: true})
-		})
-		.catch(err => {
-			console.log(err);
-		})	
+				var api_url = `http://localhost:5050/api/u/user/bookRating?userId=${user_id}&bookId=${path[2]}`
+			axios.get(api_url)
+			.then (response => {
+				if(response.data)
+					this.setState({currentRating: response.data.rating, editable: false})
+				else
+					this.setState({currentRating: 0, editable: true})
+			})
+			.catch(err => {
+				console.log(err);
+			})
+		}	
 	}
 
 	changeRating(newRating, name) {
