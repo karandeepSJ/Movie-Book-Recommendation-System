@@ -95,10 +95,14 @@ updateInputValue = (evt)=>{
   }
 
 render() {
-    const check = JSON.parse(localStorage.getItem("user"))
+   const check = JSON.parse(localStorage.getItem("user"))
     let button;
     if (check) {
-      button = <LogoutButton onClick={this.handleLogoutClick}/>
+      if(check.failure=="fail" || check.submit==false){
+        button = <LoginButton onClick={this.handleLoginClick} signupclick={this.handleSignupClick}/>;    
+      }else{
+        button = <LogoutButton onClick={this.handleLogoutClick}/>
+      }
     } else {
       button = <LoginButton onClick={this.handleLoginClick} signupclick={this.handleSignupClick}/>;    
     }
