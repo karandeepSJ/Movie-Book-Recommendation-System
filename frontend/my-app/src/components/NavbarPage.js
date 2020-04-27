@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { MDBNavbar, MDBNavbarNav, MDBNavItem, MDBBtn, MDBFormInline, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
+MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon,MDBCol } from "mdbreact";
 import { NavLink} from 'react-router-dom';
 import { MDBContainer, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -101,6 +101,7 @@ render() {
       <MDBNavbar color="default-color" dark expand="md">
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
+
             <MDBNavItem>
             <img src="Movie-Book-icon.png" alt="" style={{ width: "40px" }} />
             </MDBNavItem>
@@ -112,17 +113,19 @@ render() {
             <MDBNavItem >
               <MDBNavLink to="/home">Home</MDBNavLink>
             </MDBNavItem>
-            
+            </MDBNavbarNav>
+            <MDBNavbarNav right>
             <MDBNavItem>
+            
               <MDBFormInline waves>
                 <div className="md-form my-0">
-                  <input className="form-control mr-sm-2" placeholder="Search" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} aria-label="Search" />
+                  <input className="form-control my-0 py-1" placeholder="Search" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} aria-label="Search" />
                 </div>
               </MDBFormInline>
             </MDBNavItem>
             <MDBNavItem>
-            <MDBDropdown  size="sm"> 
-            <MDBDropdownToggle color="default" placeholder="Search">
+            <MDBDropdown rounded size="sm"> 
+            <MDBDropdownToggle rounded color="default" placeholder="Search">
                 {this.state.value }
               </MDBDropdownToggle>
               <MDBDropdownMenu color="default" basic>
@@ -143,11 +146,18 @@ render() {
             </MDBDropdown>
             </MDBNavItem>
           </MDBNavbarNav>
+          <MDBNavbarNav left>
+          <MDBNavItem>
+              <MDBNavLink className="waves-effect waves-light" to="/home">
+                
+              </MDBNavLink>
+            </MDBNavItem>
+          </MDBNavbarNav>
            {button}
           <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
           <MDBModalHeader toggle={this.toggle}>Login</MDBModalHeader>
           <MDBModalBody>
-            <NavLink to="/api/u/login"></NavLink>
+            <NavLink to="/login"></NavLink>
           </MDBModalBody>
           </MDBModal>
         </MDBCollapse>
