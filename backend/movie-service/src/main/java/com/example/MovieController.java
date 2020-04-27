@@ -48,6 +48,11 @@ public class MovieController {
         return this.movieRepo.findByMovieId(movieId);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/genre/{genreName}")
+    public List<Movies> getMovieByGenre(@PathVariable(value = "genreName") String genre){
+        return this.movieRepo.findByGenres(genre);
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/genres")
     public List<String> getMovie(){
         @SuppressWarnings("unchecked")
