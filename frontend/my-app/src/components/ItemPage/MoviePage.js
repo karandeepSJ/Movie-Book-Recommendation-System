@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-// import './movie.css';
+import Star from '../Star'
 import {
 	MDBMask,
 	MDBView,
@@ -114,9 +114,12 @@ class MoviePage extends Component {
 		  							</MDBRow>
 		  							<div className="h4-responsive pt-3" style={greenText}> Cast:
 		  							</div>
-		  							<span className="h6-responsive white-text">
+		  							<div className="h6-responsive white-text">
 	  									{this.renderCast()}
-	  								</span>
+	  								</div>
+	  								<div className="d-flex justify-content-center">
+			  							<Star/>
+			  						</div>
 		  						</MDBCardBody>
 		  					</MDBCol>
 		  				</MDBRow>

@@ -1,5 +1,5 @@
 import React from "react";
-import "../../style.css"
+import "./style.css"
 import axios from "axios";
 
 export default class VerifyLogin extends React.Component {
@@ -18,8 +18,9 @@ export default class VerifyLogin extends React.Component {
     bodyFormData.append('password', this.state.password);
     axios.post('http://localhost:5050/api/u/user/login',bodyFormData)
     .then (response => {
-      console.log(response.data.name);
+      console.log(response.data);
       this.setState(response.data);
+      this.props.storestate(response.data);
       this.props.changename(response.data.name);
       this.props.modalclose();
     })
@@ -29,7 +30,6 @@ export default class VerifyLogin extends React.Component {
       console.log(err);
     })
   }
-
   render() {
 
     return (
@@ -46,4 +46,5 @@ export default class VerifyLogin extends React.Component {
     );
   }
 }
+
 

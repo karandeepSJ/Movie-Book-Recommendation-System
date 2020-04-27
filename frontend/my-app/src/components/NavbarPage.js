@@ -7,6 +7,10 @@ import SignUp from "./LoginPage/SignUp"
 import { MDBContainer, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 import { BrowserRouter as Router } from 'react-router-dom';
 
+const modalBG = {
+  background: "-webkit-linear-gradient(left,rgba(47,100,90,1) 0%,rgba(111,161,123,1) 100%)",
+}
+
 function LoginButton(props) {
   return (
     <MDBNavbarNav right>
@@ -24,6 +28,10 @@ function LoginButton(props) {
 function LogoutButton(props) {
   return (
     <MDBNavbarNav right>
+      <MDBNavItem>
+      <MDBNavLink to="/home"> Hi {props.name}</MDBNavLink>
+      
+      </MDBNavItem>
       <MDBNavItem>
        <MDBBtn rounded size="sm" onClick={props.onClick}>Logout</MDBBtn>
       </MDBNavItem>
@@ -96,9 +104,8 @@ render() {
     let button;
     if (isLoggedIn) {
       button =<LogoutButton onClick={this.handleLogoutClick} name={this.state.name}/>
-          
     } else {
-      button = <LoginButton onClick={this.handleLoginClick} signupclick={this.handleSignupClick} name={this.state.name}/>;    
+      button = <LoginButton onClick={this.handleLoginClick} signupclick={this.handleSignupClick}/>;    
     }
   return (
     <Router>
@@ -142,7 +149,7 @@ render() {
                           }} >Book</NavLink></MDBDropdownItem>
                 <MDBDropdownItem onClick={this.selectmovie}>
                 <NavLink to={{
-                          pathname: '/search',
+                          pathname: '/search/' + this.state.inputValue,
                           state: {
                             query: this.state.inputValue
                           }
@@ -159,15 +166,15 @@ render() {
             </MDBNavItem>
           </MDBNavbarNav>
            {button}
-          <MDBModal isOpen={this.state.modal} toggle={this.toggle} >
+          <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
           <MDBModalHeader toggle={this.toggle}>Login</MDBModalHeader>
-          <MDBModalBody>
+          <MDBModalBody style={modalBG}>
             <LoginPage modalclose={this.toggle} changename={this.changename}/>
           </MDBModalBody>
           </MDBModal>
           <MDBModal isOpen={this.state.signupmodal} toggle={this.signuptoggle} >
-          <MDBModalHeader toggle={this.signuptoggle}>Login</MDBModalHeader>
-          <MDBModalBody>
+          <MDBModalHeader toggle={this.signuptoggle}>Register</MDBModalHeader>
+          <MDBModalBody style={modalBG}>
             <SignUp modalclose={this.signuptoggle} changename={this.changename}/>
           </MDBModalBody>
           </MDBModal>
@@ -179,3 +186,4 @@ render() {
 }
 
 export default NavbarPage;
+
