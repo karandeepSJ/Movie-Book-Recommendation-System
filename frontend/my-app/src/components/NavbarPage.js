@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { MDBNavbar, MDBNavbarNav, MDBNavItem, MDBBtn, MDBFormInline, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon,MDBCol } from "mdbreact";
+MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
 import { NavLink} from 'react-router-dom';
 import { MDBContainer, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -9,17 +9,13 @@ function LoginButton(props) {
   return (
     <MDBNavbarNav right>
     <MDBNavItem>
-        <MDBDropdown dropleft>
-          <MDBDropdownToggle nav caret>
-            <MDBIcon icon="user" />
-          </MDBDropdownToggle>
-            <MDBDropdownMenu className="dropdown-default">
-            <MDBDropdownItem onClick={props.onClick}>Login</MDBDropdownItem>
-            <MDBDropdownItem onClick={props.onClick}>Signup</MDBDropdownItem>
-          </MDBDropdownMenu>
-        </MDBDropdown>
+       <MDBBtn rounded size="sm" onClick={props.onClick}>Login</MDBBtn>
+      </MDBNavItem>
+    <MDBNavItem>
+       <MDBBtn rounded size="sm" onClick={props.onClick}>Signup</MDBBtn>
       </MDBNavItem>
     </MDBNavbarNav>
+
   );
 }
 
@@ -27,17 +23,7 @@ function LogoutButton(props) {
   return (
     <MDBNavbarNav right>
       <MDBNavItem>
-        <MDBNavLink to="/home">{props.name}</MDBNavLink>
-      </MDBNavItem>
-      <MDBNavItem>
-        <MDBDropdown dropleft>
-          <MDBDropdownToggle nav caret>
-            <MDBIcon icon="user"/>
-          </MDBDropdownToggle>
-          <MDBDropdownMenu className="dropdown-default">
-            <MDBDropdownItem onClick={props.onClick}>Logout</MDBDropdownItem>
-          </MDBDropdownMenu>
-        </MDBDropdown>
+       <MDBBtn rounded size="sm" onClick={props.onClick}>Logout</MDBBtn>
       </MDBNavItem>
     </MDBNavbarNav>
   );
@@ -129,14 +115,15 @@ render() {
                 {this.state.value }
               </MDBDropdownToggle>
               <MDBDropdownMenu color="default" basic>
-              
-                <MDBDropdownItem onClick={this.selectbook}><NavLink to={{
+                <MDBDropdownItem onClick={this.selectbook}>
+                <NavLink to={{
                           pathname: '/search',
                           state: {
                             query: this.state.inputValue
                           }
                           }} >Book</NavLink></MDBDropdownItem>
-                <MDBDropdownItem onClick={this.selectmovie}><NavLink to={{
+                <MDBDropdownItem onClick={this.selectmovie}>
+                <NavLink to={{
                           pathname: '/search',
                           state: {
                             query: this.state.inputValue
@@ -157,7 +144,7 @@ render() {
           <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
           <MDBModalHeader toggle={this.toggle}>Login</MDBModalHeader>
           <MDBModalBody>
-            <NavLink to="/login"></NavLink>
+            <NavLink to="/api/u/login"></NavLink>
           </MDBModalBody>
           </MDBModal>
         </MDBCollapse>
