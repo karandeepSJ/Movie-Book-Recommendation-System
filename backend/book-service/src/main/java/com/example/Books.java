@@ -39,6 +39,10 @@ public class Books {
 
     public Long ratingCount;
 
+    public Long num_pages;
+
+    public String description;
+
     @TextScore
     public Float score;
 }
