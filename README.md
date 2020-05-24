@@ -1,10 +1,7 @@
-
 # Movie-Book-Recommendation-System
-<div style="text-align:center"> <img src="frontend/my-app/public/Movie-Book-icon.png" alt="Logo" width=200)
-</div>
-<p>
+<p align="center"> <img src="frontend/my-app/public/Movie-Book-icon.png" alt="Logo" width=200)
 </p>
-<div style="text-align:left">
+
 The aim is to create a joint movie and book cataloging system. Users will be able to search for books and movies. They can give ratings to every item. Based on users’ ratings for both the domains(books, movies), our system will recommend new books and movies. This will particularly help motivate users to start reading books, by starting with those that match their movie preferences.  
 
 Currently, there exist similar online applications separately for books(Goodreads) and movies(IMDB), but, to the best of our knowledge, nothing that combines both to generate high-quality recommendations and provide a rich, unified user experience.
@@ -72,5 +69,3 @@ Run `npm start` inside the directory `frontend/my-app`
 ![Search Page](./images/search.png)
 
 ![Error Page](./images/error.png)
-
-</div>
