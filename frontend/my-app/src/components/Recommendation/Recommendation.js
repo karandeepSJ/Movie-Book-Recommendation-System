@@ -3,6 +3,7 @@ import { MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBContainer, MDBRow, M
 MDBCardBody, MDBCardText } from "mdbreact";
 import './Recommendation.css'
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 class Recommendation extends React.Component {
 
@@ -95,18 +96,28 @@ class Recommendation extends React.Component {
 
                                         return (
                                             <MDBCarouselItem itemId={str.toString()}>
+                                            <Link to={`/movie/${rec.movieId}`}>
+            
                                             <Col 
                                                 poster={rec.poster}
                                                 rating={rec.rating}
                                             />
+                                            </Link>
+                                            <Link to={`/movie/${mov_data[index+1].movieId}`}>
+            
                                             <Col 
                                                 poster={mov_data[index+1].poster}
                                                 rating={mov_data[index+1].rating}
                                             />
+                                            </Link>
+                                            <Link to={`/movie/${mov_data[index+2].movieId}`}>
+            
                                             <Col 
+
                                                 poster={mov_data[index+2].poster}
                                                 rating={mov_data[index+2].rating}
                                             />
+                                            </Link>
                                             </MDBCarouselItem>
                                         );
                                     }
@@ -131,18 +142,27 @@ class Recommendation extends React.Component {
 
                                         return (
                                             <MDBCarouselItem itemId={str.toString()}>
+                                            <Link to={`/book/${rec.bookId}`}>
+            
                                             <Col 
                                                 poster={rec.poster}
                                                 rating={rec.rating}
                                             />
-                                            <Col 
+                                            </Link>
+                                            <Link to={`/book/${book_data[index+1].bookId}`}>
+                                            
+                                            <Col
                                                 poster={book_data[index+1].poster}
                                                 rating={book_data[index+1].rating}
                                             />
+                                            </Link>
+                                            <Link to={`/book/${book_data[index+2].bookId}`}>
+                                            
                                             <Col 
                                                 poster={book_data[index+2].poster}
                                                 rating={book_data[index+2].rating}
                                             />
+                                            </Link>
                                             </MDBCarouselItem>
                                         );
                                     }
